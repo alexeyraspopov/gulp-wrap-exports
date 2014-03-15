@@ -6,7 +6,7 @@
 
 **TODO**: register package
 
-	npm install --save-dev alexeyraspopov/gulp-wrap-exports
+	npm install --save-dev gulp-wrap-exports
 
 ## Example
 

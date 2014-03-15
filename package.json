@@ -1,6 +1,6 @@
 {
 	"name": "gulp-wrap-exports",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Wrap CommonJS module in IIFE and create global variable",
 	"license": "MIT",
 	"main": "index.js",
