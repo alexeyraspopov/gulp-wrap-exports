@@ -4,11 +4,11 @@ var map = require('map-stream'),
 
 module.exports = function(options){
 	if(!options.name){
-		throws new PluginError('gulp-wrap-exports', 'Variable not specified');
+		throw new PluginError('gulp-wrap-exports', 'Variable not specified');
 	}
 
 	if(/^[^A-z0-9$_]+$/.test(options.name)){
-		throws new PluginError('gulp-wrap-exports', 'Incorrect global variable name');
+		throw new PluginError('gulp-wrap-exports', 'Incorrect global variable name');
 	}
 
 	return map(function(file, cb){
