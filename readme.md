@@ -21,6 +21,8 @@
 
 ## Options
 
+String `name` - name of global variable which should be available in browser.
+
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License) (c) Alexey Raspopov
