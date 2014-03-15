@@ -4,8 +4,6 @@
 
 ## Install
 
-**TODO**: register package
-
 	npm install --save-dev gulp-wrap-exports
 
 ## Example
@@ -34,7 +32,7 @@ Example output (`name: 'module'`):
 
 ## Options
 
-String `name` - name of global variable which should be available in browser.
+String `name` - valid name of global variable which should be available in browser.
 
 ## License
 
