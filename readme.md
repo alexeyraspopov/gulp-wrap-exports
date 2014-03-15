@@ -19,6 +19,19 @@
 			.pipe(gulp.dest('dest/'));
 	});
 
+Example input:
+
+	exports.processing = function(){};
+
+Example output (`name: 'module'`):
+
+	!function(exports, global){
+		global.module = exports;
+		
+		exports.processing = function(){};
+		
+	}({}, function(){ return this; }());
+
 ## Options
 
 String `name` - name of global variable which should be available in browser.
