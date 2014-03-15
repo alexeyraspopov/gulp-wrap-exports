@@ -24,7 +24,7 @@ module.exports = function(options){
 			'!function(exports, global){',
 			'global.' + options.name + ' = exports;',
 			file.contents.toString(),
-			'}({}, function(){ return this; }())'
+			'}({}, function(){ return this; }());'
 		].join('\n'));
 
 		cb(null, file);
