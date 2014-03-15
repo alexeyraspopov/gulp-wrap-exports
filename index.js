@@ -4,7 +4,11 @@ var map = require('map-stream'),
 
 module.exports = function(options){
 	if(!options.name){
-		// throws error
+		throws new PluginError('gulp-wrap-exports', 'Variable not specified');
+	}
+
+	if(/^[^A-z0-9$_]+$/.test(options.name)){
+		throws new PluginError('gulp-wrap-exports', 'Incorrect global variable name');
 	}
 
 	return map(function(file, cb){
@@ -16,7 +20,12 @@ module.exports = function(options){
 			return cb(new PluginError('gulp-wrap-exports', 'Streaming not supported'));
 		}
 
-		var content = file.contents.toString();
+		file.contents = new Buffer([
+			'!function(exports, global){',
+			'global.' + options.name + ' = exports;',
+			file.contents.toString(),
+			'}({}, function(){ return this; }())'
+		].join('\n'));
 
 		cb(null, file);
 	});
