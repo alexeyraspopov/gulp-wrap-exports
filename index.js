@@ -20,13 +20,27 @@ module.exports = function(options){
 			return cb(new PluginError('gulp-wrap-exports', 'Streaming not supported'));
 		}
 
-		file.contents = new Buffer([
-			'!function(exports, global){',
-			'global.' + options.name + ' = exports;',
-			file.contents.toString(),
-			'}({}, function(){ return this; }());'
-		].join('\n'));
+		file.contents = new Buffer(wrapper(file.contents.toString(), options.name).join('\n'));
 
 		cb(null, file);
 	});
 };
+
+function wrapper(code, name){
+	if(/module\.exports\s*=/.test(code)){
+		return [
+			'!function(module, global){',
+			'var exports = module.exports;',
+			code,
+			'global.' + name + ' = module.exports;',
+			'}({ exports: {} }, function(){ return this; }());'
+		];
+	}
+
+	return [
+		'!function(exports, global){',
+		'global.' + name + ' = exports;',
+		code,
+		'}({}, function(){ return this; }());'
+	];
+}
