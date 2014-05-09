@@ -29,18 +29,18 @@ module.exports = function(options){
 function wrapper(code, name){
 	if(/module\.exports\s*=/.test(code)){
 		return [
-			'!function(module, global){',
+			'!function(module, global, require){',
 			'var exports = module.exports;',
 			code,
 			'global.' + name + ' = module.exports;',
-			'}({ exports: {} }, function(){ return this; }());'
+			'}({ exports: {} }, function(){ return this; }(), function(name){ return this[name]; });'
 		];
 	}
 
 	return [
-		'!function(exports, global){',
+		'!function(exports, global, require){',
 		'global.' + name + ' = exports;',
 		code,
-		'}({}, function(){ return this; }());'
+		'}({}, function(){ return this; }(), function(name){ return this[name]; });'
 	];
 }
